@@ -22,7 +22,7 @@ var app = express();
 
 
 // DB Connection
-   mongoose.connect('mongodb://localhost:27017/MyHelpBuddyDev', {useNewUrlParser: true, useUnifiedTopology: true});
+   mongoose.connect('mongodb://localhost:27017/MyHelpBuddyDev', {useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true});
    mongoose.connection.on('error', function(err) {
       ErrorManagement.ErrorHandling.ErrorLogCreation('', 'Mongodb Connection Error', 'Server.js', err);
    });
@@ -34,6 +34,11 @@ var app = express();
 app.use(cors());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
+
+
+require('./server/web/routes/Admin/AdminManagement.routes')(app);
+require('./server/web/routes/Admin/CategoryManagement.routes')(app);
+
 
 
 app.get('*', function(req, res){

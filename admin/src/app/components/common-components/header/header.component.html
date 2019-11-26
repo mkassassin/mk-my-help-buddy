@@ -1,0 +1,81 @@
+<!-- Header Page -->
+<div class="Header_Page">
+   <!-- Header One -->
+   <div class="Header_One">
+      <!-- Logo -->
+      <img src="/assets/images/logo.png" alt="Logo" class="Header_Logo"> 
+      <!-- Notification -->
+      <!-- <span>
+         <i class="material-icons notification">notifications</i>
+      </span> -->
+      <!-- Profile -->
+      <!-- <span>
+         <i class="material-icons person">person</i>
+      </span> -->
+      <!-- Logout Button -->
+      <span class="Logout_Btn"> <span (click)="LogOut()"> Logout </span></span>
+   </div>
+   <!-- Header Two -->
+   <div class="Header_Two">
+      <ul class="Menus">
+         <!-- DashBoard -->
+         <!-- <li [routerLinkActive]="['active']" class="Menu_List" [routerLink]="['/DashBoard']">
+            <span class="Menu">
+               <i class="material-icons">dashboard</i>
+               <span> &nbsp; Dashboard </span> 
+            </span>
+         </li> -->
+         <!-- Categories -->
+         <li [routerLinkActive]="['active']" class="Menu_List" [routerLink]="['/Categories']">
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">view_module</i>
+                  <span> &nbsp; Categories </span> 
+               </span>
+            </span>
+         </li>
+         <!-- Categories -->
+         <li [routerLinkActive]="['active']" class="Menu_List" [routerLink]="['/SubCategories']">
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">view_comfy</i>
+                  <span> Sub Categories </span> 
+               </span>
+            </span>
+         </li>
+         <!-- Activities -->
+         <!-- <li [routerLinkActive]="['active']" class="Menu_List" [routerLink]="['/List_Activity']">
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; Activities </span> 
+               </span>
+            </span>
+         </li> -->
+         <!-- Configuration -->
+         <!-- <li *ngIf="User_Type === 'Admin' || User_Type === 'Sub Admin'" [routerLinkActive]="['active']" class="Menu_List">
+            <span class="Menu_Tree">
+               <span class="Menu">
+                  <i class="material-icons">people</i>
+                  <span> &nbsp; Configuration </span> 
+               </span>
+               <ul class="Menu_Tree_View">
+                  <li [routerLinkActive]="['active']" class="Menu_Tree_List" [routerLink]="['/Courses_Config']"><a> Courses Config </a></li>
+                  <li [routerLinkActive]="['active']" class="Menu_Tree_List" >
+                     <span class="Menu_Tree">
+                        <span class="Menu">
+                           <span> Activities Config </span> 
+                        </span>
+                        <ul class="Menu_Tree_View Left">
+                           <li [routerLinkActive]="['active']" [routerLink]="['/Activity_Levels']" class="Menu_Tree_List">  <a> Activity level </a>  </li>
+                        </ul>
+                     </span>
+                  </li>
+               </ul>
+            </span>
+         </li> -->
+      </ul>
+   </div>
+</div>
+
+
