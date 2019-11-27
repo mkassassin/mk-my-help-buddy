@@ -38,6 +38,7 @@ app.use(bodyParser.json());
 
 require('./server/web/routes/Admin/AdminManagement.routes')(app);
 require('./server/web/routes/Admin/CategoryManagement.routes')(app);
+require('./server/web/routes/Admin/SubCategoryManagement.routes')(app);
 
 
 

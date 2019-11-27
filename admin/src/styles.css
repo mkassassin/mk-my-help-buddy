@@ -11,6 +11,9 @@
 @import './assets/Over-Write-Css/ng-select-overwrite.css';
 @import './assets/Over-Write-Css/Primeng-Overwrite.css';
 
+
+@import './assets/css/common.css';
+
 body {
    background-color: #f3f3f3  !important;
    margin: 0;

@@ -3,7 +3,7 @@ var Schema = mongoose.Schema;
 
 // SubCategory Schema
    var SubCategorySchema = mongoose.Schema({
-      Category: { type: Schema.Types.ObjectId, ref: 'Categories', required : true },
+      Category: [{ type: Schema.Types.ObjectId, ref: 'Categories', required : true }],
       SubCategory: { type : String , required : true},
       Created_By : { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
       Last_Modified_By: { type: Schema.Types.ObjectId, ref: 'User_Management', required : true },
@@ -18,5 +18,5 @@ var Schema = mongoose.Schema;
 
    
 module.exports = {
-   SUbCategorySchema : VarSubCategory
+   SubCategorySchema : VarSubCategory
 };

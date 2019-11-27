@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
-import * as CryptoJS from 'crypto-js';
 import { LoginService } from './../../services/login-management/login.service';
 
 const API_URL = 'http://localhost:3000/API/CategoryManagement/';

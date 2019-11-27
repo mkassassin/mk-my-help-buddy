@@ -40,14 +40,14 @@ export class CategoriesModelComponent implements OnInit {
       // If Create New Category
       if (this.Type === 'Create') {
          this.Form = new FormGroup({
-            Category: new FormControl( '', {  validators: Validators.required, asyncValidators: [this.Category_AsyncValidate.bind(this)], updateOn: 'blur' } ),
+            Category: new FormControl( '', {  validators: Validators.required, asyncValidators: [this.Category_AsyncValidate.bind(this)], updateOn: 'change' } ),
             Created_By: new FormControl( this.UserId, Validators.required ),
          });
       }
       // If Edit New Category
       if (this.Type === 'Edit') {
          this.Form = new FormGroup({
-            Category: new FormControl(this.Data.Category, { validators: Validators.required, asyncValidators: [this.Category_AsyncValidate.bind(this)], updateOn: 'blur' }),
+            Category: new FormControl(this.Data.Category, { validators: Validators.required, asyncValidators: [this.Category_AsyncValidate.bind(this)], updateOn: 'change' }),
             Category_Id: new FormControl(this.Data._id, Validators.required),
             Modified_By: new FormControl(this.UserId, Validators.required)
          });

@@ -14,6 +14,7 @@ import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
 import { AuthGuard } from './Authentication/auth.guard';
+import { NotAuthGuard } from './Authentication/not-auth.guard';
 
 // Feature Modules
 import { ModalModule, AccordionModule} from 'ngx-bootstrap';
