@@ -5,6 +5,8 @@ import { map, catchError } from 'rxjs/operators';
 import { LoginService } from './../../services/login-management/login.service';
 
 const API_URL = 'http://localhost:3000/API/CategoryManagement/';
+const Stage_API_URL = 'http://68.183.212.161:3000/API/CategoryManagement/';
+
 
 const httpOptions = {
    headers: new HttpHeaders({  'Content-Type':  'application/json' })

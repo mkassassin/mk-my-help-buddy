@@ -5,6 +5,8 @@ import { map, catchError } from 'rxjs/operators';
 import * as CryptoJS from 'crypto-js';
 
 const API_URL = 'http://localhost:3000/API/AdminManagement/';
+const Stage_API_URL = 'http://68.183.212.161:3000/API/AdminManagement/';
+
 
 const httpOptions = {
    headers: new HttpHeaders({  'Content-Type':  'application/json' })

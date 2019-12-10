@@ -41,6 +41,12 @@ require('./server/web/routes/Admin/CategoryManagement.routes')(app);
 require('./server/web/routes/Admin/SubCategoryManagement.routes')(app);
 
 
+app.use(express.static(__dirname + '/admin/dist/admin/'));
+
+app.use(function(req, res) {
+   res.sendFile(path.join(__dirname, '/admin/dist/admin', 'index.html'));
+});
+
 
 app.get('*', function(req, res){
     res.send('This is Server Side Page');

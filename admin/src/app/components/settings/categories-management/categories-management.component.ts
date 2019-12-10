@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild, Renderer, TemplateRef } from '@angular/core';
 
 import { BsModalService } from 'ngx-bootstrap/modal';
 import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 import * as CryptoJS from 'crypto-js';
+
+import { DateAdapter, NativeDateAdapter } from '@angular/material/core';
 
 import { CategoriesService } from './../../../services/settings-services/categories.service';
 import { ToasterService } from './../../../services/common-services/toaster/toaster.service';
@@ -10,14 +12,59 @@ import { LoginService } from './../../../services/login-management/login.service
 
 import { CategoriesModelComponent } from '../../../models/settings-models/categories-model/categories-model.component';
 import { DeleteModelComponent } from '../../../models/common-models/delete-model/delete-model.component';
+import { FormGroup } from '@angular/forms';
 
+export class MyDateAdapter extends NativeDateAdapter {
+   format(date: Date, displayFormat: any): string {
+      const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+      const day = date.getDate();
+      const month = monthNames[date.getMonth()];
+      const year = date.getFullYear();
+      return `${day}-${month}-${year}`;
+   }
+}
 
 @Component({
   selector: 'app-categories-management',
   templateUrl: './categories-management.component.html',
-  styleUrls: ['./categories-management.component.css']
+  styleUrls: ['./categories-management.component.css'],
+  providers: [{provide: DateAdapter, useClass: MyDateAdapter}],
 })
 export class CategoriesManagementComponent implements OnInit {
+
+   PageLoader = true;
+
+   @ViewChild('TableHeaderSection', {static: true}) TableHeaderSection: ElementRef;
+   @ViewChild('TableBodySection', {static: true}) TableBodySection: ElementRef;
+   @ViewChild('TableLoaderSection', {static: true}) TableLoaderSection: ElementRef;
+
+
+   // Pagination Keys
+   CurrentIndex = 1;
+   SkipCount = 0;
+   SerialNoAddOn = 0;
+   LimitCount = 5;
+   ShowingText = 'Showing <span>0</span> to <span>0</span> out of <span>0</span> entries';
+   PagesArray = [];
+   TotalRows = 0;
+   LastCreation: Date = new Date();
+   PagePrevious: object = { Disabled: true, value : 0, Class: 'PageAction_Disabled'};
+   PageNext: object = { Disabled: true, value : 0, Class: 'PageAction_Disabled'};
+   SubLoader = false;
+   GoToPage = null;
+
+   ListData: any[] = [];
+
+   FilterFGroup: FormGroup;
+   FiltersArray: any[] = [ {Active: false, Key: 'Category', Value: '', DisplayName: 'Category', DBName: 'Category', Type: 'String', Option: '' },
+                           {Active: false, Key: 'CFromDate', Value: null, DisplayName: 'Created From', DBName: 'createdAt', Type: 'Date', Option: 'GTE' },
+                           {Active: false, Key: 'CToDate', Value: null, DisplayName: 'Created To', DBName: 'createdAt', Type: 'Date', Option: 'LTE' },
+                           {Active: false, Key: 'UFromDate', Value: null, DisplayName: 'Last Updated From', DBName: 'updatedAt', Type: 'Date', Option: 'GTE' },
+                           {Active: false, Key: 'UToDate', Value: null, DisplayName: 'Last Updated From', DBName: 'updatedAt', Type: 'Date', Option: 'LTE' }];
+   FilterFGroupStatus = false;
+   THeaders: any[] = [ { Key: 'Category', ShortKey: 'CategorySort', Name: 'Category', If_Short: false, Condition: '' },
+                        { Key: 'createdAt', ShortKey: 'createdAt', Name: 'Created Date/Time', If_Short: false, Condition: '' },
+                        { Key: 'updatedAt', ShortKey: 'updatedAt', Name: 'Last Updated Date/Time', If_Short: false, Condition: '' } ];
 
    bsModalRef: BsModalRef;
 
